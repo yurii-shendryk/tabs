@@ -8,13 +8,21 @@ body {
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
 }
 
+.container {
+  margin: 0 auto;
+  padding: 0 30px;
+  width: 1240px;
+}
+
 .tabs {
-  max-width: 600px;
+  padding: 15px 0;
 }
 
 .controls {
   display: flex;
+  justify-content: space-around;
   margin-bottom: 4px;
+  border-bottom: 0px solid #000;
 }
 
 .controls__item {

@@ -1,38 +1,27 @@
 const refs = {
-  controls: document.querySelector(`#tabs-1 [data-controls]`),
-  panes: document.querySelector(`#tabs-1 [data-panes]`),
+  constrols: document.querySelector("#tabs-1 [data-controls]"),
+  panes: document.querySelector("[data-panes]"),
 };
 
-refs.controls.addEventListener("click", onControlsClick);
+refs.constrols.addEventListener("click", onCickHandler);
 
-function onControlsClick(event) {
-  event.preventDefault();
+function onCickHandler(event) {
   if (event.target.nodeName !== "A") {
     return;
   }
-  const currentActiveContorl = refs.controls.querySelector(
+  const currentAciveControl = refs.constrols.querySelector(
     ".controls__item--active"
   );
-
-  if (currentActiveContorl) {
-    currentActiveContorl.classList.remove("controls__item--active");
-    const paneId = getPaneId(currentActiveContorl);
-    const pane = getPaneById(paneId);
+  if (currentAciveControl) {
+    currentAciveControl.classList.remove("controls__item--active");
+    const paneId = currentAciveControl.getAttribute("href").slice(1);
+    const pane = refs.panes.querySelector(`#${paneId}`);
     pane.classList.remove("pane--active");
   }
-
-  const control = event.target;
-  control.classList.add("controls__item--active");
-
-  const paneId = getPaneId(control);
-  const pane = getPaneById(paneId);
+  const controlItem = event.target;
+  controlItem.classList.add("controls__item--active");
+  // const pane = ;
+  const paneId = controlItem.getAttribute("href").slice(1);
+  const pane = refs.panes.querySelector(`#${paneId}`);
   pane.classList.add("pane--active");
-}
-
-function getPaneId(control) {
-  return control.getAttribute("href").slice(1);
-}
-
-function getPaneById(id) {
-  return refs.panes.querySelector(`#${id}`);
 }
